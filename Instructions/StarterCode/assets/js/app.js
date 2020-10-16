@@ -47,3 +47,36 @@ d3.csv("data.csv").then(function(healthDataPoints){
         data.poverty = + data.poverty;
         data.healthcare = + data.healthcare
     });
+       
+    // create x and y scales for the plot
+    var xScale = d3.scaleLinear()
+    .domain([d3.min(healthDataPoints, d => d.poverty) * 0.9, d3.max(healthDataPoints, d => d.poverty) * 1.1])
+    .range([0, width]);
+    
+    var yScale = d3.scaleLinear()
+    .domain([d3.min(healthDataPoints, d => d.healthcare) * 0.8, d3.max(healthDataPoints, d => d.healthcare) * 1.1])
+    .range([height, 0]);
+
+    // create x and y axis
+    var xAxis = d3.axisBottom(xScale);
+    var yAxis = d3.axisLeft(yScale);
+
+    // append axes to the chart
+    chartGroup.append("g")
+        .attr("transform", `translate(0, ${height})`)
+        .call(xAxis);
+
+    chartGroup.append("g")
+        .call(yAxis);
+
+    // create circles
+    var circlesGroup = chartGroup.selectAll("circle")
+    // console.log(circlesGroup)
+        .data(healthDataPoints)
+        .enter()
+        .append("circle")
+        .classed("circle", true)
+        .attr("cx", d => xScale(d.poverty))
+        .attr("cy", d=> yScale(d.healthcare))
+        .attr("r", 16)
+        .attr("fill", "lightblue")

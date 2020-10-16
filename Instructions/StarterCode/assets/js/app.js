@@ -34,3 +34,16 @@ var chartGroup = svg.append("g")
     // Format the data and convert to numerical and date values
     // =================================
     // Create a function to parse date and time
+
+    
+// import data from csv
+d3.csv("data.csv").then(function(healthDataPoints){
+    console.log(healthDataPoints);
+    
+    healthDataPoints.forEach(function(data){
+        console.log(data);
+        // grab the necessary variables for the plot,
+        //make sure poverty and healthcare variables are integers
+        data.poverty = + data.poverty;
+        data.healthcare = + data.healthcare
+    });

@@ -24,3 +24,13 @@ var svg = d3
 // Append an SVG group and move it with transform
 var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+  
+  // Step 3:
+// Import data from the donuts.csv file
+// =================================
+// d3.csv("donuts.csv").then(function(donutData) {
+    // Step 4: Parse the data
+    // Format the data and convert to numerical and date values
+    // =================================
+    // Create a function to parse date and time

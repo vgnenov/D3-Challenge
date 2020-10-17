@@ -3,7 +3,7 @@
 
 //after testing with live server and opening it up at:
 // http://127.0.0.1:5500/Instructions/StarterCode/index.html it seems the 
-//code is working as well
+//code is working as well.
 
 
 

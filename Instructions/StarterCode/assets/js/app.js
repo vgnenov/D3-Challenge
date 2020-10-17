@@ -1,9 +1,14 @@
 // Note: You'll need to use python -m http.server to run the visualization. 
 // This will host the page at localhost:8000 in your web browser.
 
+//after testing with live server and opening it up at:
+// http://127.0.0.1:5500/Instructions/StarterCode/index.html it seems the 
+//code is working as well
 
 
-// create svgHeight and svgWidth variables 
+
+// set up our chart - see 3.1 solved app.js for example
+// Step 1: Set up our chart
 var svgWidth = 960;
 var svgHeight = 600;
 
@@ -15,16 +20,20 @@ var margin = {
     left: 50
   };
 
-  // create width and height variable 
+ 
 var width = svgWidth - margin.left - margin.right;
 var height = svgHeight - margin.top - margin.bottom;
 
-// Create an SVG that will hold the chart
+
+// Step 2: Create an SVG wrapper,
+// append an SVG group that will hold our chart,
+// and shift the latter by left and top margins.
 var svg = d3
   .select("#scatter")
   .append("svg")
   .attr("width", svgWidth)
   .attr("height", svgHeight);
+
 
 // Append an SVG group and move it with transform
 var chartGroup = svg.append("g")
@@ -40,8 +49,7 @@ var chartGroup = svg.append("g")
     // =================================
     // Create a function to parse date and time
 
-    
-// import data from csv
+
 d3.csv("data.csv").then(function(healthDataPoints){
     console.log(healthDataPoints);
     

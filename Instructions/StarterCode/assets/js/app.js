@@ -12,7 +12,7 @@
 var svgWidth = 960;
 var svgHeight = 600;
 
-// create the margin variable
+// chart set up
 var margin = {
     top: 20,
     right: 40,
@@ -49,19 +49,17 @@ var chartGroup = svg.append("g")
     // =================================
     // Create a function to parse date and time
 
-
 d3.csv("data.csv").then(function(healthDataPoints){
     console.log(healthDataPoints);
     
     healthDataPoints.forEach(function(data){
         console.log(data);
-        // grab the necessary variables for the plot,
-        //make sure poverty and healthcare variables are integers
         data.poverty = + data.poverty;
         data.healthcare = + data.healthcare
     });
        
-    // create x and y scales for the plot
+     // Step 5: Create the scales for the chart
+  // =================================
     var xScale = d3.scaleLinear()
     .domain([d3.min(healthDataPoints, d => d.poverty) * 0.9, d3.max(healthDataPoints, d => d.poverty) * 1.1])
     .range([0, width]);
@@ -70,21 +68,24 @@ d3.csv("data.csv").then(function(healthDataPoints){
     .domain([d3.min(healthDataPoints, d => d.healthcare) * 0.8, d3.max(healthDataPoints, d => d.healthcare) * 1.1])
     .range([height, 0]);
 
-    // create x and y axis
+  // Step 7: Create the axes
+  // =================================
     var xAxis = d3.axisBottom(xScale);
     var yAxis = d3.axisLeft(yScale);
 
-    // append axes to the chart
+    //Append the axes to the chartGroup
+    // ==============================================
+    // Add x-axis
     chartGroup.append("g")
         .attr("transform", `translate(0, ${height})`)
         .call(xAxis);
 
+
+    // Add y-axis
     chartGroup.append("g")
         .call(yAxis);
 
-    // create circles
     var circlesGroup = chartGroup.selectAll("circle")
-    // console.log(circlesGroup)
         .data(healthDataPoints)
         .enter()
         .append("circle")
@@ -94,7 +95,7 @@ d3.csv("data.csv").then(function(healthDataPoints){
         .attr("r", 16)
         .attr("fill", "lightblue")
 
-           // add the text to the circles
+           
     var textSelection = chartGroup.selectAll('.text')
     console.log(textSelection)
         textSelection.data(healthDataPoints)
@@ -114,7 +115,7 @@ d3.csv("data.csv").then(function(healthDataPoints){
     var labelsGroup = chartGroup.append("g")
         .attr("transform", `translate(${width / 2}, ${height + 20 })`);
 
-    // create x label variable
+   //
     var xLabel = labelsGroup.append("text")
         .attr("x", 0)
         .attr("y", 20)
@@ -122,7 +123,7 @@ d3.csv("data.csv").then(function(healthDataPoints){
         .style("font-weight", "bold")
 
     
-    // create y label variable
+    // 
     chartGroup.append("text")
         .attr("transform", "rotate(-90)")
         .attr("x", 0 - (height/2))

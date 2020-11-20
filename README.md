@@ -17,3 +17,10 @@ Import and parse data
 ### Step 4 
 Create scales for the chart
 ![Screenshot](Images/scales.JPG "Screenshot")
+
+### Step 5 and 6
+Create the axes and append them to the chart 
+![Screenshot](Images/axes.JPG "Screenshot")
+![Screenshot](Images/axes2.JPG "Screenshot")
+
+

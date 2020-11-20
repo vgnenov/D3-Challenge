@@ -68,7 +68,7 @@ d3.csv("data.csv").then(function(healthDataPoints){
     .domain([d3.min(healthDataPoints, d => d.healthcare) * 0.8, d3.max(healthDataPoints, d => d.healthcare) * 1.1])
     .range([height, 0]);
 
-  // Step 7: Create the axes
+  // Create the axes
   // =================================
     var xAxis = d3.axisBottom(xScale);
     var yAxis = d3.axisLeft(yScale);
